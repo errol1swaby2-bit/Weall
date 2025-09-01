@@ -1,0 +1,130 @@
+# WeAll DSL v1.0
+# Purpose: Defines core protocol, governance, treasury, reputation, developer layer, and plugin extensibility.
+
+protocol:
+  name: "WeAll"
+  version: "1.0"
+  description: |
+    A decentralized social coordination protocol enabling democratic governance,
+    community-driven funding, modular extensions, and Sybil resistance.
+
+---
+
+core:
+  consensus:
+    mechanism: Nominated Proof of Stake (NPoS)
+    block_time: 6s
+    validator_slots: 1000
+    rewards:
+      base_inflation: 2%
+      halving_interval: 210000  # blocks
+  identity:
+    proof_of_humanity:
+      nft_levels:
+        - level: 1
+          name: Guest
+          permissions: [view]
+        - level: 2
+          name: Contributor
+          permissions: [view, post, comment]
+        - level: 3
+          name: Juror
+          permissions: [view, post, comment, juror, node_operator]
+
+---
+
+governance:
+  dao:
+    model: Liquid Democracy
+    voting:
+      quorum: 15%
+      threshold: simple-majority
+      delegation: allowed
+  reputation:
+    scoring:
+      base: 0
+      actions:
+        post: +1
+        comment: +0.5
+        like: +0.1
+        juror_decision: +2
+        bad_behavior: -5
+    decay: 1% per week
+
+---
+
+treasury:
+  sources:
+    - block_rewards
+    - transaction_fees
+    - slashing_penalties
+  allocations:
+    governance: 30%
+    developer_fund: 20%
+    community_fund: 30%
+    universal_basic_income: 20%
+
+---
+
+developer_layer:
+  runtime:
+    language: Rust (Substrate FRAME)
+    pallets:
+      - identity
+      - governance
+      - treasury
+      - reputation
+      - content
+      - messaging
+  plugin_system:
+    interface: WASM
+    extensions:
+      - analytics
+      - content_moderation
+      - dapps
+
+---
+
+network:
+  messaging:
+    private: end-to-end encryption (E2EE)
+    group: permissioned + encrypted
+    friends: mutual-consent model
+
+  storage:
+    content: IPFS
+    metadata: On-chain
+    encryption: User-owned keys
+
+---
+
+rewards:
+  distribution:
+    node_operator: 40%
+    jurors: 20%
+    content_creators: 30%
+    reserve: 10%
+
+---
+
+execution:
+  runtime:
+    pallets:
+      - System
+      - Balances
+      - Identity
+      - Governance
+      - Treasury
+      - Reputation
+      - Content
+      - Messaging
+      - RewardDistribution
+      - DisputeResolution
+
+---
+
+genesis:
+  balances:
+    faucet: 1,000,000,000 units
+  initial_validators: [validator1, validator2, validator3]
+  initial_treasury: 100,000,000 units

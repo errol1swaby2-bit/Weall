@@ -1,0 +1,189 @@
+# weall_dsl_v0.5.yaml
+Protocol:
+  Name: "WeAll"
+  Version: "0.5"
+  Description: |
+    A decentralized social coordination protocol enabling democratic governance,
+    community-driven funding, proof-of-humanity verification, and modular extensions.
+
+Core:
+  Governance:
+    Type: "quadratic_voting"
+    Rules:
+      - "1 identity = 1 reputation score"
+      - "Voting weight = sqrt(reputation)"
+    Actions:
+      - Name: "propose"
+        Description: "Submit a proposal for community vote"
+        Inputs: ["user_id", "title", "description", "pallet_reference"]
+      - Name: "vote"
+        Description: "Cast weighted vote on a proposal"
+        Inputs: ["user_id", "proposal_id", "vote_option"]
+
+  Treasury:
+    Type: "community_pool"
+    Funding_sources:
+      - "transaction_fees"
+      - "donations"
+      - "slash_penalties"
+    Actions:
+      - Name: "allocate"
+        Description: "Allocate funds to an approved proposal"
+        Inputs: ["pool_name", "amount"]
+      - Name: "reclaim"
+        Description: "Reclaim unused funds from expired proposals"
+        Inputs: ["pool_name", "amount"]
+
+  Reputation:
+    Type: "score_based"
+    Factors:
+      - "contribution_quality"
+      - "juror_performance"
+      - "node_uptime"
+    Actions:
+      - Name: "grant"
+        Description: "Increase reputation based on contributions"
+        Inputs: ["identity", "amount"]
+      - Name: "slash"
+        Description: "Decrease reputation due to misconduct"
+        Inputs: ["identity", "amount"]
+
+Pallets:
+  - Name: "ProofOfHumanity"
+    Version: "0.1"
+    Description: "Enables layered PoH verification with NFT classes"
+    Levels:
+      - Level: 1
+        Type: "guest"
+        Permissions: ["view_content"]
+      - Level: 2
+        Type: "async_verified"
+        Permissions: ["view_content", "post_content", "comment"]
+      - Level: 3
+        Type: "live_verified"
+        Requirements: ["video_verification", "reputation >= threshold"]
+        Permissions: ["view_content", "post_content", "comment", "juror", "node_operator"]
+    Actions:
+      - Name: "register_identity"
+        Inputs: ["public_key", "poh_level"]
+      - Name: "verify_identity"
+        Inputs: ["identity", "verification_method"]
+
+  - Name: "Messaging"
+    Version: "0.1"
+    Description: "Supports DMs, groups, and encrypted friend lists"
+    Features:
+      - "friends"
+      - "groups"
+      - "direct_messaging"
+    Actions:
+      - Name: "add_friend"
+        Inputs: ["identity"]
+      - Name: "send_message"
+        Inputs: ["recipient", "message", "encryption_key"]
+      - Name: "create_group"
+        Inputs: ["name", "members"]
+
+  - Name: "Content"
+    Version: "0.1"
+    Description: "User-generated posts, comments, and moderation"
+    Storage: "ipfs"
+    Actions:
+      - Name: "create_post"
+        Inputs: ["user_id", "content_hash", "tags"]
+      - Name: "comment"
+        Inputs: ["user_id", "post_id", "comment_hash"]
+      - Name: "moderate"
+        Inputs: ["post_id", "action", "reason"]
+
+  - Name: "Governance"
+    Version: "0.1"
+    Description: "Handles decision-making, proposals, voting, and enactment"
+    Features:
+      - "proposal_creation"
+      - "voting_mechanism"
+      - "delegation"
+      - "enactment"
+    Actions:
+      - Name: "propose"
+        Inputs: ["user_id", "title", "description", "pallet_reference"]
+      - Name: "vote"
+        Inputs: ["user_id", "proposal_id", "vote_option"]
+
+  - Name: "Treasury"
+    Version: "0.1"
+    Description: "Collective funding system managed by governance"
+    Features:
+      - "funding_requests"
+      - "disbursement"
+      - "clawback"
+      - "allocations"
+    Actions:
+      - Name: "allocate"
+        Inputs: ["pool_name", "amount"]
+      - Name: "reclaim"
+        Inputs: ["pool_name", "amount"]
+
+  - Name: "Reputation"
+    Version: "0.1"
+    Description: "Tracks and updates community trust signals"
+    Features:
+      - "reputation_score"
+      - "sybil_resistance"
+      - "decay"
+      - "juror_eligibility"
+    Actions:
+      - Name: "grant"
+        Inputs: ["identity", "amount"]
+      - Name: "slash"
+        Inputs: ["identity", "amount"]
+
+  - Name: "Identity"
+    Version: "0.1"
+    Description: "Provides user verification and pseudonymous identity layer"
+    Features:
+      - "guest_level"
+      - "async_level"
+      - "live_verified_level"
+      - "privacy_controls"
+
+  - Name: "Developer_Layer"
+    Version: "0.1"
+    Description: "Provides APIs, SDKs, and modular extension tools"
+    Features:
+      - "smart_contracts"
+      - "plugin_registry"
+      - "testnet_sandbox"
+      - "interoperability"
+
+  - Name: "Storage"
+    Version: "0.1"
+    Description: "Decentralized storage for content and encrypted user data"
+    Features:
+      - "ipfs_integration"
+      - "encrypted_local"
+      - "versioning"
+      - "pruning"
+
+  - Name: "Messaging_Core"
+    Version: "0.1"
+    Description: "Direct and group communication channels"
+    Features:
+      - "private_messages"
+      - "group_channels"
+      - "moderation"
+      - "ephemeral"
+
+  - Name: "Social_Graph"
+    Version: "0.1"
+    Description: "Tracks relationships, friends, and groups"
+    Features:
+      - "friend_connections"
+      - "group_membership"
+      - "algorithm_hooks"
+      - "censorship_resistance"
+
+Extensibility:
+  plugin_system: "Supports community-built plugins with governance approval"
+  custom_pallets: "Developers can author new pallets for runtime integration"
+  cross_chain: "Bridges allow interop with Ethereum, Bitcoin sidechains, and others"
