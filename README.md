@@ -101,26 +101,19 @@ Ensures protocol rules are enforced programmatically.
 
 Getting Started
 
-1. Clone the repository:
+Clone the repository and install dependencies:
 
-
-
-git clone https://github.com/yourusername/weall.git
-cd weall
-
-2. Install dependencies (Python 3.10+ recommended):
-
-
-
+git clone https://github.com/errol1swaby2-bit/Weall.git
+cd Weall
 pip install -r requirements.txt
 
-3. Run the executor:
+Now you can run the executor with a DSL file:
 
+python run_executor.py examples/sample_dsl.yaml
 
+To verify everything works, run the test suite:
 
-python weall_executor.py
-
-4. Modify or create DSL files in dsl/ to test governance, proposals, and modules.
+pytest -q
 
 
 
