@@ -1,160 +1,100 @@
-WeAll Protocol
+WeAll
 
-Version: 0.5
-Copyright (c) 2025 Errol Jacob Jones Swaby
-
-WeAll is a decentralized social coordination protocol enabling democratic governance, community-driven funding, and modular extensibility. It is designed to empower communities while keeping the software and protocol fully open and free.
-
-
----
-
-Table of Contents
-
-1. Overview
-
-
-2. Features
-
-
-3. Architecture
-
-
-4. Getting Started
-
-
-5. Licenses
-
-
-6. Contributing
-
-
-7. Contact
-
-
-
-
----
-
-Overview
-
-WeAll allows communities to:
-
-Create proposals and vote using a proof-of-humanity and reputation-based system.
-
-Manage shared resources and funding in a transparent treasury.
-
-Extend the protocol through modular DSL files and plugins.
-
-
-The protocol emphasizes democratic participation, community ownership, and copyleft principles to ensure continued freedom and openness.
-
-
----
-
-Features
-
-Quadratic Voting: Voting power scales with the square root of reputation.
-
-Proof-of-Humanity Enforcement: One identity = one reputation score.
-
-Modular DSL System: Easily extend governance rules, treasury logic, and plugin behavior.
-
-Automated Proposal Execution: Actions trigger automatically when quorum and conditions are met.
-
-Open Participation: Anyone can join, propose, and vote.
-
-
-
----
-
-Architecture
-
-1. Core Modules:
-
-Governance: Proposals, voting, reputation.
-
-Treasury: Community funds management.
-
-Posts: Decentralized content storage and interaction.
-
-
-
-2. DSL Layer:
-
-Defines rules, actions, and plugins.
-
-Written in YAML, easily readable and extendable.
-
-
-
-3. Executor:
-
-Python runtime that interprets the DSL.
-
-Ensures protocol rules are enforced programmatically.
-
-
-
+WeAll is a decentralized social coordination protocol powered by PoH (Proof of Humanity).
+Users can register, propose, vote, post, comment, and interact with a shared governance system.
 
 
 ---
 
 Getting Started
 
-Clone the repository and install dependencies:
+Clone the repository and install dependencies
 
 git clone https://github.com/errol1swaby2-bit/Weall.git
-cd Weall
-pip install -r requirements.txt
+cd WeAll
+pip install -r Requirements.txt
 
-Now you can run the executor with a DSL file:
+> Note: If you want to run tests, also install pytest:
 
-python run_executor.py examples/sample_dsl.yaml
 
-To verify everything works, run the test suite:
+
+pip install pytest
+
+
+---
+
+Run the Interactive CLI
+
+The CLI is built into weall_runtime.py:
+
+python weall_runtime.py
+
+You’ll see a prompt:
+
+Command (register/propose/vote/deposit/post/comment/show_post/show_posts/.../exit):
+
+Type exit to quit.
+
+
+---
+
+Commands Overview
+
+register – Register a user with a PoH level
+
+propose – Submit a new proposal
+
+vote – Vote on proposals
+
+deposit – Allocate funds to a treasury pool
+
+post – Create a post
+
+comment – Add a comment to a post
+
+show_post / show_posts – Display posts
+
+edit_post / delete_post / edit_comment / delete_comment – Modify content
+
+list_user_posts / list_tag_posts – Filter posts
+
+show – Print full internal state
+
+
+
+---
+
+Tests (Optional)
+
+If you have tests in tests/, run:
 
 pytest -q
 
-
-
-
----
-
-Licenses
-
-Code: GNU Affero General Public License v3.0 (LICENSE-AGPL.txt)
-
-Protocol / DSL / Documentation: Creative Commons Attribution-ShareAlike 4.0 (LICENSE-CC-BY-SA.txt)
-
-
-This ensures that all modifications remain open, and anyone running WeAll or derivative works on a network must share their changes.
+This ensures your executor correctly loads and processes DSL files.
 
 
 ---
 
-Contributing
+DSL File
 
-We welcome contributions! By contributing, you agree to:
+The CLI automatically loads:
 
-1. Submit code and documentation under the same licenses.
+weall_dsl_v0.5.yaml
 
-
-2. Acknowledge that contributions are initially under Errol Jacob Jones Swaby’s copyright until A.R.S. is established.
-
-
-3. Respect community governance rules and open-source principles.
-
-
-
-Please see CONTRIBUTING.md for full guidelines.
+You can add additional DSLs in a new folder examples/ if desired.
 
 
 ---
 
-Contact
+Requirements
 
-Author: Errol Jacob Jones Swaby
+Your Requirements.txt should include:
 
-Project: WeAll – Architects of Regenerative Sovereignty
+pyyaml>=6.0
+pytest>=7.0
+packaging>=23.0
+click>=8.0
 
-Email: errol1swaby2@gmail.com
+Only pyyaml is strictly required to run the executor.
+
+Others are optional but recommended for testing and CLI enhancements.
