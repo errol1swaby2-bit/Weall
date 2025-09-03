@@ -95,8 +95,7 @@ Pallets:
         Inputs: ["user_id", "post_id", "comment_hash"]
       - Name: "moderate"
         Inputs: ["post_id", "action", "reason"]
-
-  - Name: "Governance"
+                                                    - Name: "Governance"
     Version: "0.1"
     Description: "Handles decision-making, proposals, voting, and enactment"
     Features:
@@ -126,43 +125,31 @@ Pallets:
 
   - Name: "Reputation"
     Version: "0.1"
-    Description: "Tracks and updates community trust signals"
-    Features:
+    Description: "Tracks and updates community trust signals"                                           Features:
       - "reputation_score"
       - "sybil_resistance"
       - "decay"
       - "juror_eligibility"
-    Actions:
-      - Name: "grant"
+    Actions:                                            - Name: "grant"
         Inputs: ["identity", "amount"]
-      - Name: "slash"
-        Inputs: ["identity", "amount"]
+      - Name: "slash"                                     Inputs: ["identity", "amount"]
 
-  - Name: "Identity"
-    Version: "0.1"
-    Description: "Provides user verification and pseudonymous identity layer"
-    Features:
+  - Name: "Identity"                                  Version: "0.1"                                    Description: "Provides user verification and pseudonymous identity layer"                           Features:
       - "guest_level"
-      - "async_level"
-      - "live_verified_level"
+      - "async_level"                                   - "live_verified_level"
       - "privacy_controls"
-
-  - Name: "Developer_Layer"
+                                                    - Name: "Developer_Layer"
     Version: "0.1"
     Description: "Provides APIs, SDKs, and modular extension tools"
     Features:
-      - "smart_contracts"
-      - "plugin_registry"
-      - "testnet_sandbox"
+      - "smart_contracts"                               - "plugin_registry"                               - "testnet_sandbox"
       - "interoperability"
 
   - Name: "Storage"
     Version: "0.1"
     Description: "Decentralized storage for content and encrypted user data"
-    Features:
-      - "ipfs_integration"
-      - "encrypted_local"
-      - "versioning"
+    Features:                                           - "ipfs_integration"
+      - "encrypted_local"                               - "versioning"
       - "pruning"
 
   - Name: "Messaging_Core"
@@ -172,18 +159,13 @@ Pallets:
       - "private_messages"
       - "group_channels"
       - "moderation"
-      - "ephemeral"
-
+      - "ephemeral"                               
   - Name: "Social_Graph"
     Version: "0.1"
     Description: "Tracks relationships, friends, and groups"
-    Features:
-      - "friend_connections"
+    Features:                                           - "friend_connections"
       - "group_membership"
-      - "algorithm_hooks"
-      - "censorship_resistance"
-
-Extensibility:
-  plugin_system: "Supports community-built plugins with governance approval"
-  custom_pallets: "Developers can author new pallets for runtime integration"
+      - "algorithm_hooks"                               - "censorship_resistance"
+                                                  Extensibility:
+  plugin_system: "Supports community-built plugins with governance approval"                          custom_pallets: "Developers can author new pallets for runtime integration"
   cross_chain: "Bridges allow interop with Ethereum, Bitcoin sidechains, and others"
