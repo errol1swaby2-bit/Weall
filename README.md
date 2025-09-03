@@ -40,27 +40,49 @@ Type exit to quit.
 
 Commands Overview
 
-register – Register a user with a PoH level
+User & Identity Management
 
-propose – Submit a new proposal
+register – Register a new user with a Proof-of-Humanity (PoH) level.
 
-vote – Vote on proposals
-
-deposit – Allocate funds to a treasury pool
-
-post – Create a post
-
-comment – Add a comment to a post
-
-show_post / show_posts – Display posts
-
-edit_post / delete_post / edit_comment / delete_comment – Modify content
-
-list_user_posts / list_tag_posts – Filter posts
-
-show – Print full internal state
+deposit – Allocate funds to a treasury pool, increasing your stake for governance.
 
 
+Proposal & Voting
+
+propose – Submit a new proposal for community consideration.
+
+vote – Cast a vote on an active proposal.
+
+create_dispute – Initiate a dispute over a post, comment, or proposal outcome.
+
+juror_vote – Cast a vote as a selected juror on a dispute.
+
+
+Content Management
+
+post – Create a new post.
+
+comment – Add a comment to a post.
+
+edit_post / delete_post – Modify or remove your post.
+
+edit_comment / delete_comment – Modify or remove your comment.
+
+show_post / show_posts – Display one or multiple posts.
+
+list_user_posts / list_tag_posts – Filter posts by user or tag.
+
+
+Dispute & Moderation
+
+show_dispute / show_disputes – View the details of one or all active disputes.
+
+report_post / report_comment – Flag a post or comment for review.
+
+
+System & Diagnostics
+
+show – Print the full internal state of the system, including users, proposals, treasury, and disputes.
 
 ---
 
