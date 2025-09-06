@@ -1,5 +1,5 @@
 **v0.6 is up with the wecoin mvp**
-**they are tagged into this repo**
+**v0.6 is tagged into this repo**
 **at the current moment i dont** **know how to push it into main.**
 WeAll
 
